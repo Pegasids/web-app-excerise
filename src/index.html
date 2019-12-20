@@ -1,0 +1,195 @@
+<!-- Canopus Tong
+Syntec Application Excerise
+19 Dec 2019, Thursday -->
+
+<nav
+     class="navbar is-primary"
+     role="navigation"
+     aria-label="main navigation"
+     >
+  <div class="navbar-brand">
+    <a
+       role="button"
+       class="navbar-burger burger"
+       aria-label="menu"
+       aria-expanded="false"
+       >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item">
+        Home
+      </a>
+      <a class="navbar-item">
+        Appointments
+      </a>
+      <a class="navbar-item">
+        Clients
+      </a>
+      <a class="navbar-item">
+        Employees
+      </a>
+    </div>
+    <div class="navbar-end">
+      <a class="navbar-item">Sign Out</a>
+    </div>
+  </div>
+</nav>
+<div id="modal" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Add Employee</p>
+      <button
+              id="closeBtn"
+              class="delete"
+              aria-label="close"
+              onclick="closeModal()"
+              ></button>
+    </header>
+    <form id="form" onsubmit="saveNewEmployee(event)">
+      <section class="modal-card-body">
+        <!-- Content ... -->
+        <div class="field">
+          <label class="label">First Name</label>
+          <div class="control has-icons-left">
+            <input
+                   id="fname"
+                   style="text-transform: capitalize;"
+                   class="input"
+                   type="text"
+                   pattern="[a-zA-Z ]+"
+                   required="required"
+                   placeholder="e.g. Michael"
+                   />
+            <span class="icon is-small is-left">
+              <i class="fas fa-user"></i>
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Last Name</label>
+          <div class="control has-icons-left">
+            <input
+                   id="lname"
+                   style="text-transform: capitalize;"
+                   class="input"
+                   type="text"
+                   pattern="[a-zA-Z ]+"
+                   required="required"
+                   placeholder="e.g. Smith"
+                   />
+            <span class="icon is-small is-left">
+              <i class="fas fa-user"></i>
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Job Title</label>
+          <div class="control has-icons-left">
+            <div class="select">
+              <select id="jobTitle" required>
+                <option value="" disabled selected>Select Job Title</option>
+                <option value="Esthetician">Esthetician</option>
+                <option value="General Manager">General Manager</option>
+                <option value="Receptionist">Receptionist</option>
+                <option value="Senior Stylist">Senior Stylist</option>
+                <option value="Stylist">Stylist</option>
+                <option value="Trainee">Trainee</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div id="briefcase" class="icon is-small is-left">
+              <i class="fas fa-briefcase"></i>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">
+            Profile Image Url
+            <span style="font-weight: 300;font-style: italic;">
+              optional
+            </span>
+          </label>
+          <div class="control has-icons-left">
+            <input
+                   id="ppUrl"
+                   class="input"
+                   type="url"
+                   placeholder="e.g. http://..."
+                   />
+            <span class="icon is-small is-left">
+              <i class="fas fa-link"></i>
+            </span>
+          </div>
+        </div>
+      </section>
+      <footer class="modal-card-foot">
+        <button id="saveBtn" class="button is-success" type="submit">
+          Save
+        </button>
+        <button
+                id="cancelBtn"
+                class="button"
+                type="button"
+                onclick="closeModal()"
+                >
+          Cancel
+        </button>
+      </footer>
+    </form>
+  </div>
+</div>
+<section class="section">
+  <div class="container">
+    <div class="bar">
+      <h1 class="title">Employees</h1>
+      <span
+            id="sortAcc"
+            style="color: #363636;"
+            class="sort-icon"
+            onclick="sortAccending(this)"
+            ><i class="fas fa-sort-alpha-down fa-sm"></i
+        ></span>
+      <span
+            id="sortDec"
+            style="color: #363636;"
+            class="sort-icon"
+            onclick="sortDecending(this)"
+            ><i class="fas fa-sort-alpha-up fa-sm"></i
+        ></span>
+    </div>
+
+    <article id="employees">
+      <!-- Render Content Here -->
+      <div id="preload">
+        <div class="loader"></div>
+      </div>
+      <ul id="employeeList"></ul>
+    </article>
+    <button
+            id="loadBtn"
+            class="button is-rounded is-primary is-light load-btn"
+            onclick="loadMore(this)"
+            >
+      <span class="icon is-small">
+        <i class="fas fa-arrow-circle-down"></i>
+      </span>
+      <span> Load more</span>
+    </button>
+    <button
+            class="button is-rounded is-link is-light add-btn"
+            onclick="openModal()"
+            >
+      <span class="icon is-small">
+        <i class="fas fa-plus"></i>
+      </span>
+      <span> Add employee</span>
+    </button>
+  </div>
+</section>
+<div id="snackbar">You have successfully saved a new employee.</div>
